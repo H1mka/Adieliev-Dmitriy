@@ -1,30 +1,34 @@
-import { Height } from '@mui/icons-material';
 import { Card, Typography, CardContent, Grid } from '@mui/material';
 
 const SideItem = (props) => {
+    const { idea = null, flag } = props
     return (
-        <Grid item justifySelf='center' alignSelf='center'>
-            <Card
-                sx={{
-                    minWidth: 200,
-                    maxWidth: 200,
-                    textAlign: 'center',
-                }}
-            >
-                <CardContent>
-                    <Typography
-                        variant='body1'
+        <>
+            {flag && idea && (
+                <Grid item justifySelf='center' alignSelf='center'>
+                    <Card
                         sx={{
-                            height: 150,
-                            display: 'flex',
-                            alignItems: 'center',
+                            minWidth: 200,
+                            maxWidth: 200,
+                            textAlign: 'center',
                         }}
                     >
-                        {props.type}
-                    </Typography>
-                </CardContent>
-            </Card>
-        </Grid>
+                        <CardContent>
+                            <Typography
+                                variant='body1'
+                                sx={{
+                                    height: 150,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                }}
+                            >
+                                {idea.activity}
+                            </Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            )}
+        </>
     );
 };
 

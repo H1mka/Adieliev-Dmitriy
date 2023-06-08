@@ -14,7 +14,6 @@ const FreshIdeaItem = () => {
     }, []);
 
     const handleChange = () => {
-        console.log(idea);
         dispatch(newIdea(idea));
     };
 
