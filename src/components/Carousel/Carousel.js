@@ -9,50 +9,53 @@ import { Grid, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectIdeas } from 'store/listSlice';
 
-
 const CustomSlider = () => {
-    const order = useSelector(selectIdeas);
+    const ideas = useSelector(selectIdeas);
 
-    const [mainIndex, setMainIndex] = useState(2);
+    const [mainIndex, setMainIndex] = useState(0);
     const [leftIndex, setLeftIndex] = useState(0);
     const [rightIndex, setRightIndex] = useState(0);
 
     useEffect(() => {
-        setRightIndex(mainIndex < order.length - 1 ? mainIndex + 1 : null);
+        setRightIndex(mainIndex < ideas.length - 1 ? mainIndex + 1 : null);
         setLeftIndex(mainIndex > 0 ? mainIndex - 1 : null);
-        console.log('MainIndex:', mainIndex)
-    }, [mainIndex, order]);
+    }, [mainIndex, ideas]);
+
+    // adding ideas in progress to localstorage
+    useEffect(() => {
+        setMainIndex(ideas.length > 1 ? 1 : 0); // if there are more than 1 ideas, start whith central, otherwise with the frist
+        localStorage.setItem('ideasList', JSON.stringify(ideas));
+    }, [ideas]);
 
     const completeTask = () => {
-        if(mainIndex === order.length - 1 && order.length > 1)
-            setMainIndex(order.length - 2)
-    }
+        if (mainIndex === ideas.length - 1 && ideas.length > 1) setMainIndex(ideas.length - 2);
+    };
 
     const handleChangeDec = () => {
         if (mainIndex > 0) setMainIndex(mainIndex - 1);
     };
 
     const handleChangeInc = () => {
-        if (mainIndex < order.length - 1) setMainIndex(mainIndex + 1);
+        if (mainIndex < ideas.length - 1) setMainIndex(mainIndex + 1);
     };
 
     return (
         <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
-            {order.length && (
+            {ideas.length && (
                 <>
-                    <IconItem icon={<ArrowBackIcon />} handleChange={handleChangeDec}/>
+                    <IconItem icon={<ArrowBackIcon />} handleChange={handleChangeDec} />
 
-                    <SideItem idea={order[leftIndex]} flag={leftIndex != null} />
+                    <SideItem idea={ideas[leftIndex]} flag={leftIndex != null} />
 
-                    <CentralItem idea={order[mainIndex]} completeTask={completeTask} />
+                    <CentralItem idea={ideas[mainIndex]} completeTask={completeTask} />
 
-                    <SideItem idea={order[rightIndex]} flag={rightIndex} />
+                    <SideItem idea={ideas[rightIndex]} flag={rightIndex} />
 
-                    <IconItem icon={<ArrowForwardIcon />} handleChange={handleChangeInc}/>
+                    <IconItem icon={<ArrowForwardIcon />} handleChange={handleChangeInc} />
 
                     <Grid item xs={12}>
                         <Typography sx={{ textAlign: 'center', mt: 5 }}>
-                            {mainIndex + 1} / {order.length}
+                            {mainIndex + 1} / {ideas.length}
                         </Typography>
                     </Grid>
                 </>

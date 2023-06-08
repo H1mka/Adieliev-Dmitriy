@@ -33,12 +33,7 @@ const CustomCard = (props) => {
                     </div>
                 </CardContent>
                 <DashedLine margin='0px 0 20px 0' thickness={3} />
-                <Typography
-                    gutterBottom
-                    align='center'
-                    variant='body1'
-                    component='div'
-                >
+                <Typography gutterBottom align='center' variant='body1' component='div'>
                     {type}
                 </Typography>
             </CardActionArea>
