@@ -4,8 +4,15 @@ import { useDispatch } from 'react-redux';
 import { completeIdea } from 'store/listSlice';
 
 const CentralItem = (props) => {
-    const { idea, completeTask } = props
+    let { idea, completeTask } = props
     const dispatch = useDispatch();
+
+    const date = String(new Date())
+    idea = {...idea, date}
+    const changeLocalStorage = () => {
+        const localData = JSON.parse(localStorage.getItem('completedIdeas'))
+        localStorage.setItem('completedIdeas', JSON.stringify(localData ? [...localData, idea] : [idea]))
+    }   
     return (
         <Grid item xs={4}>
             <CustomCard
@@ -14,6 +21,7 @@ const CentralItem = (props) => {
                 handleChange={() => {
                     completeTask()
                     dispatch(completeIdea(idea));
+                    changeLocalStorage()
                 }}
             />{' '}
         </Grid>

@@ -13,7 +13,7 @@ const FreshIdeaItem = () => {
         getIdea().then((response) => setIdea(response.data));
     }, []);
 
-    const handleChange = () => {
+    const handleAdd = () => {
         dispatch(newIdea(idea));
     };
 
@@ -22,7 +22,7 @@ const FreshIdeaItem = () => {
             <CustomCard
                 activity={idea.activity}
                 type={idea.type}
-                handleChange={handleChange}
+                handleChange={handleAdd}
             />
         </Grid>
     );

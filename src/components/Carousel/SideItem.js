@@ -1,7 +1,7 @@
 import { Card, Typography, CardContent, Grid } from '@mui/material';
 
 const SideItem = (props) => {
-    const { idea = null, flag } = props
+    const { idea = null, flag } = props;
     return (
         <>
             {flag && idea && (
@@ -18,8 +18,10 @@ const SideItem = (props) => {
                                 variant='body1'
                                 sx={{
                                     height: 150,
+                                    width: '100%',
                                     display: 'flex',
                                     alignItems: 'center',
+                                    justifyContent: 'center',
                                 }}
                             >
                                 {idea.activity}
