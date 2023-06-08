@@ -11,19 +11,22 @@ export const ideasSlice = createSlice({
     initialState,
     reducers: {
         newIdea: (state, action) => {
-            state.ideasList.push(action.payload);
+            if (!state.ideasList.some((idea) => idea.key === action.payload.key))
+                state.ideasList.push(action.payload);
         },
         setIdeas: (state, action) => {
             state.ideasList = action.payload;
         },
-        // completeIdea: (state) => {},
-        // increment: (state) => {
-        //     state.value += 1;
-        // },
+        completeIdea: (state, action) => {
+            state.ideasList = state.ideasList.filter(
+                (idea) => idea.key !== action.payload.key
+            );
+            state.completed.push(action.payload);
+        },
     },
 });
 
-export const { newIdea, setIdeas, increment } = ideasSlice.actions;
+export const { newIdea, setIdeas, completeIdea } = ideasSlice.actions;
 
 export const selectIdeas = (state) => state.list.ideasList;
 

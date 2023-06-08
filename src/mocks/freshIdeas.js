@@ -20,8 +20,7 @@ const freshIdeas = [
         key: 9870231,
     },
     {
-        activity:
-            'Sit in the dark and listen to your favorite music with no distractions',
+        activity: 'Sit in the dark and listen to your favorite music with no distractions',
         type: 'relaxation',
         key: 9056241,
     },

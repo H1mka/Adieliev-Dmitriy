@@ -1,15 +1,19 @@
-// import { Card, Typography, CardActionArea, CardContent } from '@mui/material';
 import CustomCard from 'components/CustomCard';
 import { Grid } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { completeIdea } from 'store/listSlice';
 
-const CentralItem = ({ activity, type }) => {
+const CentralItem = (props) => {
+    const { idea, completeTask } = props
+    const dispatch = useDispatch();
     return (
         <Grid item xs={4}>
             <CustomCard
-                activity={activity}
-                type={type}
+                activity={idea.activity}
+                type={idea.type}
                 handleChange={() => {
-                    console.log(1);
+                    completeTask()
+                    dispatch(completeIdea(idea));
                 }}
             />{' '}
         </Grid>

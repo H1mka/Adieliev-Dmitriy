@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import SideItem from './SideItem';
 import CentralItem from './CentralItem';
-import { Grid, IconButton, Typography } from '@mui/material';
+import IconItem from './IconItem';
+
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Grid, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectIdeas } from 'store/listSlice';
+
 
 const CustomSlider = () => {
     const order = useSelector(selectIdeas);
@@ -15,10 +18,15 @@ const CustomSlider = () => {
     const [rightIndex, setRightIndex] = useState(0);
 
     useEffect(() => {
-        console.log(order.length);
         setRightIndex(mainIndex < order.length - 1 ? mainIndex + 1 : null);
         setLeftIndex(mainIndex > 0 ? mainIndex - 1 : null);
+        console.log('MainIndex:', mainIndex)
     }, [mainIndex, order]);
+
+    const completeTask = () => {
+        if(mainIndex === order.length - 1 && order.length > 1)
+            setMainIndex(order.length - 2)
+    }
 
     const handleChangeDec = () => {
         if (mainIndex > 0) setMainIndex(mainIndex - 1);
@@ -32,28 +40,15 @@ const CustomSlider = () => {
         <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
             {order.length && (
                 <>
-                    <Grid item justifySelf='center' alignSelf='center'>
-                        <IconButton onClick={handleChangeDec}>
-                            <ArrowBackIcon />
-                        </IconButton>
-                    </Grid>
-                    {leftIndex != null && (
-                        <SideItem type={order[leftIndex].activity} />
-                    )}
+                    <IconItem icon={<ArrowBackIcon />} handleChange={handleChangeDec}/>
 
-                    <CentralItem
-                        activity={order[mainIndex].activity}
-                        type={order[mainIndex].type}
-                    />
+                    <SideItem idea={order[leftIndex]} flag={leftIndex != null} />
 
-                    {rightIndex && (
-                        <SideItem type={order[rightIndex].activity} />
-                    )}
-                    <Grid item justifySelf='center' alignSelf='center'>
-                        <IconButton onClick={handleChangeInc} size='large'>
-                            <ArrowForwardIcon />
-                        </IconButton>
-                    </Grid>
+                    <CentralItem idea={order[mainIndex]} completeTask={completeTask} />
+
+                    <SideItem idea={order[rightIndex]} flag={rightIndex} />
+
+                    <IconItem icon={<ArrowForwardIcon />} handleChange={handleChangeInc}/>
 
                     <Grid item xs={12}>
                         <Typography sx={{ textAlign: 'center', mt: 5 }}>

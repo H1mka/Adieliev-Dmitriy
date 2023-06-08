@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
-import { Container } from '@mui/material';
 import FreshIdeasList from 'components/FreshIdeasList';
 import Title from 'components/Title';
 import DashedLine from 'components/DashedLine';
-import './style.module.scss';
 import CustomSlider from 'components/Carousel/Carousel';
 import freshIdeas from 'mocks/freshIdeas';
+import { Container } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { setIdeas } from 'store/listSlice';
 
