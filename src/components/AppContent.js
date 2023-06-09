@@ -5,6 +5,7 @@ import Title from 'components/Title';
 import DashedLine from 'components/DashedLine';
 import CustomSlider from 'components/Carousel/Carousel';
 import CompleteIdeas from './CompleteIdeas';
+import AchievementsList from './AchievementsList';
 
 import freshIdeas from 'mocks/freshIdeas';
 
@@ -37,7 +38,7 @@ const AppContent = () => {
 
                 <DashedLine margin={'50px 0px'} thickness={3} />
                 <Title title={'Achievements'} />
-                {/* Achiviements */}
+                <AchievementsList />
 
                 <DashedLine margin={'50px 0px'} thickness={3} />
                 <Title title={'Completed challenges'} />

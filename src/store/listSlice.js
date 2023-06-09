@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     ideasList: [],
     completed: [],
-    value: 0,
 };
 
 export const ideasSlice = createSlice({
@@ -19,8 +18,9 @@ export const ideasSlice = createSlice({
         },
         completeIdea: (state, action) => {
             state.ideasList = state.ideasList.filter((idea) => idea.key !== action.payload.key);
-            if (!state.completed.some((idea) => idea.key === action.payload.key))
+            if (!state.completed.some((idea) => idea.key === action.payload.key)) {
                 state.completed.push(action.payload);
+            }
         },
         setCompleted: (state, action) => {
             state.completed = action.payload;
