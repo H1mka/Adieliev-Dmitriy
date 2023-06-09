@@ -43,7 +43,10 @@ const CustomSlider = () => {
         <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
             {ideas.length && (
                 <>
-                    <IconItem icon={<ArrowBackIcon />} handleChange={handleChangeDec} />
+                    <IconItem
+                        icon={<ArrowBackIcon sx={{ fontSize: 35 }} />}
+                        handleChange={handleChangeDec}
+                    />
 
                     <SideItem idea={ideas[leftIndex]} flag={leftIndex != null} />
 
@@ -51,7 +54,10 @@ const CustomSlider = () => {
 
                     <SideItem idea={ideas[rightIndex]} flag={rightIndex} />
 
-                    <IconItem icon={<ArrowForwardIcon />} handleChange={handleChangeInc} />
+                    <IconItem
+                        icon={<ArrowForwardIcon sx={{ fontSize: 35 }} />}
+                        handleChange={handleChangeInc}
+                    />
 
                     <Grid item xs={12}>
                         <Typography sx={{ textAlign: 'center', mt: 5 }}>

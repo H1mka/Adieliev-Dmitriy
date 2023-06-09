@@ -18,12 +18,8 @@ const FreshIdeaItem = () => {
     };
 
     return (
-        <Grid item xs={3}>
-            <CustomCard
-                activity={idea.activity}
-                type={idea.type}
-                handleChange={handleAdd}
-            />
+        <Grid item lg={3} md={3} sm={3} xs={6}>
+            <CustomCard activity={idea.activity} type={idea.type} handleChange={handleAdd} />
         </Grid>
     );
 };

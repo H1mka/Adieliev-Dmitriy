@@ -1,6 +1,7 @@
 import { styled } from '@mui/material';
 
-const DashedLine = ({ margin, thickness }) => {
+const DashedLine = (props) => {
+    const { margin, thickness } = props;
     const StyledDivider = styled('hr')({
         border: 0,
         borderTop: `${thickness}px dashed #e0e0e0`,
