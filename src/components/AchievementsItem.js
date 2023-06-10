@@ -13,10 +13,9 @@ const AchievementsItem = (props) => {
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        fontSize: 32,
                     }}
                 >
-                    {count}
+                    <Typography variant='h5' align='center' sx={{ fontSize: 42, }}>{count}</Typography>
                 </Paper>
                 <Typography align='center' variant='h5'>
                     {type[0].toUpperCase() + type.slice(1)}

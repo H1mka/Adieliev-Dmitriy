@@ -11,8 +11,8 @@ const AchievementsList = () => {
     const achiements = countAchievements(completedIdeas);
     return (
         <Grid container spacing={6} sx={{ justifyContent: 'center' }}>
-            {Object.keys(achiements).map((item) => (
-                <AchievementsItem type={item} count={achiements[item]} />
+            {Object.keys(achiements).map((item, index) => (
+                <AchievementsItem type={item} count={achiements[item]} key={index}/>
             ))}
         </Grid>
     );

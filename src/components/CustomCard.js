@@ -26,6 +26,7 @@ const CustomCard = (props) => {
                             align='center'
                             variant='body1'
                             component='div'
+                            color='textPrimary'
                             sx={{ margin: 0 }}
                         >
                             {activity}
