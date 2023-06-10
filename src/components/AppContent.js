@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import FreshIdeasList from 'components/FreshIdeasList';
 import Title from 'components/Title';
@@ -7,27 +7,45 @@ import CustomSlider from 'components/Carousel/Carousel';
 import CompleteIdeas from './CompleteIdeas';
 import AchievementsList from './AchievementsList';
 
-import freshIdeas from 'mocks/freshIdeas';
-
-import { Container } from '@mui/material';
+import { Container, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { setIdeas } from 'store/listSlice';
 import { setCompleted } from 'store/listSlice';
 
+import { useSelector } from 'react-redux';
+import { selectIdeas, selectCompletedIdeas } from 'store/listSlice';
+import postIdeas from 'services/postIdeas';
+import getIdeasList from 'services/getIdeasList';
+
 const AppContent = () => {
     const dispatch = useDispatch();
-    const ideasList = JSON.parse(localStorage.getItem('ideasList'));
-    const completedIdeas = JSON.parse(localStorage.getItem('completedIdeas'));
+
+    const [ideasList, setIdeasList] = useState(null)
+    const [completedIdeasList, setCompletedIdeasList] = useState(null)
+
+    const ideasListSave = useSelector(selectIdeas);
+    const completedIdeasSave = useSelector(selectCompletedIdeas);
 
     useEffect(() => {
-        if (completedIdeas) dispatch(setCompleted(completedIdeas));
+        if (completedIdeasList && completedIdeasList.length > 0) dispatch(setCompleted(completedIdeasList));
 
         if (ideasList && ideasList.length > 0) dispatch(setIdeas(ideasList));
-        else dispatch(setIdeas(freshIdeas));
-    }, []);
+    }, [ideasList, completedIdeasList]);
+
+    const save = () => {
+        postIdeas('postIdeasList', ideasListSave);
+        postIdeas('postCompletedIdeas', completedIdeasSave);
+    };
+
+    const load = () => {
+        getIdeasList('getIdeasList').then((response) => setIdeasList(response.data));
+        getIdeasList('getCompletedIdeas').then((response) => setCompletedIdeasList(response.data));
+    };
 
     return (
         <>
+            <Button onClick={save}>Save</Button>
+            <Button onClick={load}>Load</Button>
             <Container sx={{ mt: 4 }}>
                 <Title title={'Choose fresh ideas to do'} />
                 <FreshIdeasList />

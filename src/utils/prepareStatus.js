@@ -12,7 +12,7 @@ const prepareStatus = (date) => {
         if (weeks === 1) output = `A week ago`;
         else output = `${weeks} weeks ago`;
     } else if (days > 0) {
-        if (days === 1) output = `A week ago`;
+        if (days === 1) output = `A day ago`;
         else output = `${days} days ago`;
     } else if (hours > 0) {
         if (hours === 1) output = `A hour ago`;

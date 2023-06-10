@@ -14,7 +14,8 @@ const FreshIdeaItem = () => {
     }, []);
 
     const handleAdd = () => {
-        dispatch(newIdea(idea));
+        const { activity, key, type } = idea;
+        dispatch(newIdea({activity, type, key}));
     };
 
     return (
