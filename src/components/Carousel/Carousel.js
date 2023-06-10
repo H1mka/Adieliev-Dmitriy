@@ -21,10 +21,8 @@ const CustomSlider = () => {
         setLeftIndex(mainIndex > 0 ? mainIndex - 1 : null);
     }, [mainIndex, ideas]);
 
-    // adding ideas in progress to localstorage
     useEffect(() => {
         setMainIndex(ideas.length > 1 ? 1 : 0); // if there are more than 1 ideas, start whith central, otherwise with the frist
-        localStorage.setItem('ideasList', JSON.stringify(ideas));
     }, [ideas]);
 
     const completeTask = () => {

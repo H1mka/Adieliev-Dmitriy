@@ -4,7 +4,7 @@ const DashedLine = (props) => {
     const { margin, thickness } = props;
     const StyledDivider = styled('hr')({
         border: 0,
-        borderTop: `${thickness}px dashed #e0e0e0`,
+        borderTop: `${thickness}px dashed var(--lightDark)`,
         margin: margin,
     });
 
