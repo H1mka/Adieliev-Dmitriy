@@ -2,7 +2,6 @@ import { Paper, Box, Typography, Grid } from '@mui/material';
 
 const AchievementsItem = (props) => {
     const { type = String.prototype, count } = props;
-    console.log(type);
     return (
         <Grid item lg={4} md={4} sx={{ display: 'flex', justifyContent: 'center' }}>
             <Box>
