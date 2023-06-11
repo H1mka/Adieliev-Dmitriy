@@ -5,14 +5,14 @@ import IconItem from './IconItem';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, Skeleton, Stack } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectIdeas } from 'store/listSlice';
 
 const CustomSlider = () => {
     const ideas = useSelector(selectIdeas);
 
-    const [mainIndex, setMainIndex] = useState(0);
+    const [mainIndex, setMainIndex] = useState(1);
     const [leftIndex, setLeftIndex] = useState(0);
     const [rightIndex, setRightIndex] = useState(0);
 
@@ -22,24 +22,29 @@ const CustomSlider = () => {
     }, [mainIndex, ideas]);
 
     useEffect(() => {
-        setMainIndex(ideas.length > 1 ? 1 : 0); // if there are more than 1 ideas, start whith central, otherwise with the frist
+        // if there 1 idea, start with the frist
+        ideas.length === 1 && setMainIndex(0)
     }, [ideas]);
 
     const completeTask = () => {
         if (mainIndex === ideas.length - 1 && ideas.length > 1) setMainIndex(ideas.length - 2);
     };
 
+
+    // Switching left
     const handleChangeDec = () => {
         if (mainIndex > 0) setMainIndex(mainIndex - 1);
     };
 
+
+    // Switching right
     const handleChangeInc = () => {
         if (mainIndex < ideas.length - 1) setMainIndex(mainIndex + 1);
     };
 
     return (
         <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
-            {ideas.length && (
+            {ideas.length ? (
                 <>
                     <IconItem
                         icon={<ArrowBackIcon sx={{ fontSize: 35 }} />}
@@ -58,12 +63,12 @@ const CustomSlider = () => {
                     />
 
                     <Grid item xs={12}>
-                        <Typography sx={{ textAlign: 'center', mt: 5 }}>
+                        <Typography variant='h6' sx={{ textAlign: 'center', mt: 5 }}>
                             {mainIndex + 1} / {ideas.length}
                         </Typography>
                     </Grid>
                 </>
-            )}
+            ) : <Skeleton variant="rectangular" width={450} height={250} />}
         </Grid>
     );
 };
