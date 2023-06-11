@@ -31,6 +31,6 @@ export const ideasSlice = createSlice({
 export const { newIdea, completeIdea, setIdeas, setCompleted } = ideasSlice.actions;
 
 export const selectIdeas = (state) => state.list.ideasList;
-export const selectCompletedIdeas = (state) => state.list.completed;
+export const selectCompletedIdeas = (state) => state.list.completed.toSorted((a, b) => new Date(b.date) - new Date(a.date));
 
 export default ideasSlice.reducer;

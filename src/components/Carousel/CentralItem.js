@@ -6,7 +6,6 @@ import { completeIdea } from 'store/listSlice';
 const CentralItem = (props) => {
     let { idea, completeTask } = props
     const dispatch = useDispatch();
-
     const date = String(new Date())
     idea = {...idea, date}
     return (

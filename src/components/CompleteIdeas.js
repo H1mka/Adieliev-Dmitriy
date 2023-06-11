@@ -38,7 +38,7 @@ const CompleteIdeas = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {completedIdeas.map((idea, index) => (
+                    {completedIdeas.toSorted((a, b) => a.date - b.date).map((idea, index) => (
                         <TableRow key={idea.key}>
                             <TableCell sx={{ borderRight: '1px solid var(--dark)' }} align='center'>
                                 {index + 1}

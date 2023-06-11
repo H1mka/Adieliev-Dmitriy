@@ -60,14 +60,11 @@ app.post('/postIdeasList', async (req, res) => {
 
         const dataList = req.body
 
-        console.log('!!!!!!!!*********&&&&&&&&', dataList);
-
         await ideasCollection.insertMany(dataList, (err, result) => {
             if (err) {
                 console.error('Ошибка при выполнении insertMany:', err);
                 return;
             }
-            console.log('Документы успешно добавлені:', result.insertedCount);
         });
         res.status(200).send('Data upload');
     } catch (e) {
@@ -85,14 +82,11 @@ app.post('/postCompletedIdeas', async (req, res) => {
 
         const dataList = req.body
 
-        console.log('!!!!!!!!*********&&&&&&&&', dataList);
-
         await ideasCollection.insertMany(dataList, (err, result) => {
             if (err) {
                 console.error('Ошибка при выполнении insertMany:', err);
                 return;
             }
-            console.log('Документы успешно добавлені:', result.insertedCount);
         });
         res.status(200).send('Data upload');
     } catch (e) {
