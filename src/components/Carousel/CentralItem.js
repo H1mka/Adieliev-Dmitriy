@@ -4,17 +4,17 @@ import { useDispatch } from 'react-redux';
 import { completeIdea } from 'store/listSlice';
 
 const CentralItem = (props) => {
-    let { idea, completeTask } = props
+    let { idea, completeTask } = props;
     const dispatch = useDispatch();
-    const date = String(new Date())
-    idea = {...idea, date}
+    const date = String(new Date());
+    idea = { ...idea, date };
     return (
         <Grid item xs={4}>
             <CustomCard
                 activity={idea.activity}
                 type={idea.type}
                 handleChange={() => {
-                    completeTask()
+                    completeTask();
                     dispatch(completeIdea(idea));
                 }}
             />

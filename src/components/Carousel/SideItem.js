@@ -8,8 +8,7 @@ const SideItem = (props) => {
                 <Grid item justifySelf='center' alignSelf='center'>
                     <Card
                         sx={{
-                            minWidth: 200,
-                            maxWidth: 200,
+                            width: 200,
                             textAlign: 'center',
                         }}
                     >

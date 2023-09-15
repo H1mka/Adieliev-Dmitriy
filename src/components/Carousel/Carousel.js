@@ -5,7 +5,7 @@ import IconItem from './IconItem';
 
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { Grid, Typography, Skeleton, Stack } from '@mui/material';
+import { Grid, Typography, Skeleton } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectIdeas } from 'store/listSlice';
 
@@ -22,20 +22,18 @@ const CustomSlider = () => {
     }, [mainIndex, ideas]);
 
     useEffect(() => {
-        // if there 1 idea, start with the frist
-        ideas.length === 1 && setMainIndex(0)
+        // if there 1 idea, start with the first
+        ideas.length === 1 && setMainIndex(0);
     }, [ideas]);
 
     const completeTask = () => {
         if (mainIndex === ideas.length - 1 && ideas.length > 1) setMainIndex(ideas.length - 2);
     };
 
-
     // Switching left
     const handleChangeDec = () => {
         if (mainIndex > 0) setMainIndex(mainIndex - 1);
     };
-
 
     // Switching right
     const handleChangeInc = () => {
@@ -68,7 +66,9 @@ const CustomSlider = () => {
                         </Typography>
                     </Grid>
                 </>
-            ) : <Skeleton variant="rectangular" width={450} height={250} />}
+            ) : (
+                <Skeleton variant='rectangular' width={450} height={250} />
+            )}
         </Grid>
     );
 };
