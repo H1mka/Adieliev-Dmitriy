@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 import FreshIdeasList from 'components/FreshIdeasList';
 import Title from 'components/Title';
 import DashedLine from 'components/DashedLine';
@@ -11,7 +9,6 @@ import Header from './Header';
 import { Container } from '@mui/material';
 
 const AppContent = () => {
-
     return (
         <>
             <Header />

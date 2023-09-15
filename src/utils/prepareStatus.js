@@ -12,20 +12,20 @@ const prepareStatus = (date) => {
         if (weeks === 1) output = `A week ago`;
         else output = `${weeks} weeks ago`;
         return output;
-    } 
-    
+    }
+
     if (days > 0) {
         if (days === 1) output = `A day ago`;
         else output = `${days} days ago`;
         return output;
-    } 
-    
+    }
+
     if (hours > 0) {
         if (hours === 1) output = `A hour ago`;
         else output = `${hours} hours ago`;
         return output;
-    } 
-    
+    }
+
     if (minutes > 0) {
         if (minutes === 1) output = `One minute ago`;
         else output = `${minutes} minutes ago`;

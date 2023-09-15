@@ -1,100 +1,21 @@
 const express = require('express');
-const { MongoClient } = require('mongodb');
 const cors = require('cors');
-
-const client = new MongoClient(
-    'mongodb+srv://kakdela24101610:QP2NvPOWIEhvRIm1@cluster0.koxgrpd.mongodb.net/?retryWrites=true&w=majority'
-);
+const ideasListRouter = require('./routes/ideasList.routes');
+const completedIdeasRouter = require('./routes/completedIdeas.routes');
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
-app.use(express.json());
-app.use(cors());
 
-const start = async () => {
-    try {
-        await client.connect();
-        console.log('Connection done');
-        await client.db().createCollection("ideasList")
-    } catch (e) {
-        console.log('sas');
-        console.log(e);
-    }
-};
+try {
+    app.use(express.json());
+    app.use(cors());
+    app.use('', ideasListRouter);
+    app.use('', completedIdeasRouter);
 
-app.get('/getIdeasList', async (req, res) => {
-    try {
-        console.log('START SUCCESFULl');
-        await client.connect();
-        const ideasCollection = client.db().collection('ideasList');
-
-        const ideas = await ideasCollection.find({}).toArray();
-        res.status(201).json([...ideas]);
-    } catch (e) {
-        console.error(e);
-        return res.sendStatus(404);
-    }
-});
-
-app.get('/getCompletedIdeas', async (req, res) => {
-    try {
-        console.log('START SUCCESFULl');
-        await client.connect();
-        const ideasCollection = client.db().collection('completedIdeas');
-
-        const ideas = await ideasCollection.find({}).toArray();
-        res.status(201).json([...ideas]);
-    } catch (e) {
-        console.error(e);
-        return res.sendStatus(404);
-    }
-});
-
-app.post('/postIdeasList', async (req, res) => {
-    try {
-        await client.connect();
-        const ideasCollection = client.db().collection('ideasList');
-
-        await ideasCollection.deleteMany({});
-
-        const dataList = req.body
-
-        await ideasCollection.insertMany(dataList, (err, result) => {
-            if (err) {
-                console.error('Ошибка при выполнении insertMany:', err);
-                return;
-            }
-        });
-        res.status(200).send('Data upload');
-    } catch (e) {
-        console.error(e);
-        return res.sendStatus(404);
-    }
-});
-
-app.post('/postCompletedIdeas', async (req, res) => {
-    try {
-        await client.connect();
-        const ideasCollection = client.db().collection('completedIdeas');
-
-        await ideasCollection.deleteMany({});
-
-        const dataList = req.body
-
-        await ideasCollection.insertMany(dataList, (err, result) => {
-            if (err) {
-                console.error('Ошибка при выполнении insertMany:', err);
-                return;
-            }
-        });
-        res.status(200).send('Data upload');
-    } catch (e) {
-        console.error(e);
-        return res.sendStatus(404);
-    }
-});
-
-app.listen(PORT, () => {
-    console.log(`Server starting on PORT ${PORT}`);
-});
+    app.listen(PORT, () => {
+        console.log(`Server starting on PORT ${PORT}`);
+    });
+} catch (e) {
+    console.log(e ? `Error: ${e}` : 'Listening port 3001');
+}

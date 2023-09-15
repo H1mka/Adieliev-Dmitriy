@@ -14,24 +14,37 @@ const AchievementsList = () => {
             {completedIdeas.length > 0 ? (
                 <Grid container spacing={6} sx={{ justifyContent: 'center' }}>
                     {Object.keys(achiements).map((item, index) => (
-                        <AchievementsItem type={item} count={achiements[item]} key={index}/>
+                        <AchievementsItem type={item} count={achiements[item]} key={index} />
                     ))}
                 </Grid>
             ) : (
                 <Container>
-                    <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 30 }}>
-                        <Skeleton variant="circular" width={150} height={150} />
-                        <Skeleton variant="circular" width={150} height={150} />
-                        <Skeleton variant="circular" width={150} height={150} />
+                    <Container
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            gap: 30,
+                        }}
+                    >
+                        <Skeleton variant='circular' width={150} height={150} />
+                        <Skeleton variant='circular' width={150} height={150} />
+                        <Skeleton variant='circular' width={150} height={150} />
                     </Container>
-                    <Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 30 }}>
-                        <Skeleton variant="circular" width={150} height={150} />
-                        <Skeleton variant="circular" width={150} height={150} />
+                    <Container
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            gap: 30,
+                        }}
+                    >
+                        <Skeleton variant='circular' width={150} height={150} />
+                        <Skeleton variant='circular' width={150} height={150} />
                     </Container>
                 </Container>
             )}
         </>
-        
     );
 };
 
